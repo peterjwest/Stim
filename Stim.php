@@ -1,6 +1,6 @@
 <?php
 class Stim extends Stim_Node {
-	function elem($name) { return $this->dom->getElementsByTagName($name)->item(0); }
+	function body() { return $this->dom->getElementsByTagName("body")->item(0); }
 	
 	function html() { 
 		$args = func_get_args();
@@ -16,7 +16,7 @@ class Stim extends Stim_Node {
 		$this->dom->registerNodeClass('DOMElement', 'StimDomElem');
 		if (isset($options['file'])) $this->htmlFile($options['file']);
 		if (isset($options['string'])) $this->html($options['string']);
-		parent::__construct(array($this->elem("html")));
+		parent::__construct(array($this->dom->getElementsByTagName("html")->item(0)));
 	}
 	
 	private function htmlFile($filename) {
@@ -220,7 +220,7 @@ class StimDomElem extends DOMElement {
 	function createHtml($html) {
 		$temp = new Stim(array('string' => $html));
 		$elems = array();
-		foreach($temp->elem("body")->children() as $elem)
+		foreach($temp->body()->children() as $elem)
 			$elems[] = $this->ownerDocument->importNode($elem, true);
 		return $elems;
 	}
@@ -229,7 +229,7 @@ class StimDomElem extends DOMElement {
 		$temp = new Stim(array('string' => "<html><body></body></html>"));
 		foreach($this->children() as $child) {
 			$elem = $temp->dom->importNode($child, true);
-			$temp->elem("body")->appendChild($elem);
+			$temp->body()->appendChild($elem);
 		}
 		$html = $temp->html();
 		preg_match_all("~<body>|</body>~", $html, $matches, PREG_OFFSET_CAPTURE);
