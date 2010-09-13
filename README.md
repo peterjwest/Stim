@@ -1,7 +1,7 @@
 #Stim
 ##An unobstrusive template engine for PHP
 
-Stim is designed to be a usable, powerful template editor. Like most template engines it separates HTML from PHP code, however unlike most template engines the template files contain no markup. Stim uses classes and ids with a jQuery-like syntax adapted for content insertion:
+Stim is designed to be a usable, powerful template editor. Like most template engines it separates HTML from PHP code, however unlike most template engines, the template files contain no markup. Stim uses classes and ids with a jQuery-like syntax adapted for content insertion:
 
     $page = new Stim(array("file" => "Template.htm"));
     $page->find("#menu .title")->text("The title of my website!")->source("http://mywebsite.com/");
