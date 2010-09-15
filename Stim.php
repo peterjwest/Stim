@@ -1,5 +1,13 @@
 <?php
 class Stim extends Stim_Node {
+	function __construct($options) {
+		$this->dom = new DOMDocument;
+		$this->dom->registerNodeClass('DOMElement', 'StimDomElem');
+		if (isset($options['file'])) $this->htmlFile($options['file']);
+		if (isset($options['string'])) $this->html($options['string']);
+		parent::__construct(array($this->dom->getElementsByTagName("html")->item(0)));
+	}
+	
 	function body() { return $this->dom->getElementsByTagName("body")->item(0); }
 	
 	function html() { 
@@ -9,14 +17,6 @@ class Stim extends Stim_Node {
 			return $this;
 		}
 		else return $this->dom->saveHTML(); 
-	}
-	
-	function __construct($options) {
-		$this->dom = new DOMDocument;
-		$this->dom->registerNodeClass('DOMElement', 'StimDomElem');
-		if (isset($options['file'])) $this->htmlFile($options['file']);
-		if (isset($options['string'])) $this->html($options['string']);
-		parent::__construct(array($this->dom->getElementsByTagName("html")->item(0)));
 	}
 	
 	private function htmlFile($filename) {
@@ -75,13 +75,14 @@ class Stim_Node {
 		return true;
 	}
 	
-	function each($data, $function) {
+	function each($data, $function = false) {
 		foreach ($this->lists() as $list)
 			foreach ($list as $key => $elem)
-				$function(new Stim_Node(array($elem)), isset($data[$key]) ? $data[$key] : array());
+				$function(new Stim_Node(array($elem)), isset($data[$key]) ? $data[$key] : array()); 
+		return $this;	
 	}
 	
-	function insert($data, $function) {
+	function insert($data, $function = false) {
 		foreach ($this->lists() as $list)
 			foreach ($this->resize($list, count($data)) as $key => $elem)
 				$function(new Stim_Node(array($elem)), isset($data[$key]) ? $data[$key] : array());

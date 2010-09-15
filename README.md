@@ -60,7 +60,7 @@ The final two methods are the best ones! These are for inserting lists of conten
 	));
     $items = $page->find(".item");
 	
-In this example `$items` has six elements which would be grouped into three lists, since the first 3 are inside a `div`, and the last three are split with a `br` element.
+In this example `$items` has six elements which would be grouped into three lists, since the first three are inside a `div`, and the last three are split with a `br` element.
 
 - `each($data, $function)` calls $function with the nth element from each list and the nth item from `$data`
 - `insert($data, $function)` resizes each list to the size of `$data`, then does the same as `each()`
