@@ -100,7 +100,7 @@ Stim requires [PHP's DOM](http://php.net/manual/en/book.dom.php) which is automa
 
 ###Anonymous Functions
 The Stim methods `insert()` and `each()` require function passing. Ideally [anonymous functions](http://php.net/manual/en/functions.anonymous.php) which require PHP 5.30 or above. 
-However you can use [variable functions](http://www.php.net/manual/en/functions.variable-functions.php) instead.
+However, for older versions of PHP, you can use [variable functions](http://www.php.net/manual/en/functions.variable-functions.php) instead.
 
 ###XHTML
 Unfortunately PHP's DOM doesn't support XHTML correctly (self closing tags are not closed), however any other version of HTML, including HTML5, is supported.
