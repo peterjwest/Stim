@@ -111,4 +111,4 @@ PHP's DOM doesn't support CDATA when loading an HTML file, so Stim templates can
 ##Bugs and Future Development
 
 - The `cdata()` method uses the [createCDATASection()](http://php.net/manual/en/domdocument.createcdatasection.php) method, which doesn't add CDATA tags (this may be a bug). Currently, these tags are  added manually, and are commented out in script tags to prevent javascript errors.
-- Please send bugs or suggestions to peterjwest3@gmail.com!
+- Please send bugs or suggestions to peterjwest3@gmail.com
