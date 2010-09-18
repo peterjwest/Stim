@@ -32,6 +32,7 @@ Stim doesn't support element names (eg `a.link`) or alternative pattern matching
 The rest of Stim's methods are getter/setters with a very similar behaviour to jQuery. If a value is passed, they will set that value for each element and return the original object, otherwise they will return the value from the first element.
 
 - `text()` sets the inner text, removing any child nodes
+- `cdata()` sets an inner cdata section, removing any child nodes
 - `html()` sets the inner html, removing any child nodes
 - `attr($name)` sets the $name attribute 
 
@@ -39,8 +40,6 @@ The rest of Stim's methods are getter/setters with a very similar behaviour to j
 Stim also supports two context sensitive shortcut methods: `source()` and `val()`:
 - `source()` sets the source file, or hyperlink for an element, it currently supports `a`, `href`, `style`, `link`, and `form`
 - `val()` sets the value of form fields, it currently supports `input`, `textarea` and `option`
-
-I'm looking to expand this area, let me know if you have any suggestions at <peterjwest3@gmail.com>!
 
 ###Dynamic content resizing
 The final two methods are the best ones! These are for inserting lists of content, you know: articles, comments, tags, menu links, etc. These methods group selected elements which are adjacent into lists, here's an example:
@@ -95,3 +94,21 @@ Sub templates are really simple with Stim, I'm not even going to explain it:
 	$page = new Stim(array("file" => "Template.htm"));
 	$tags = new Stim(array("file" => "SubTemplate.htm"));
 	$page->find("#tags")->html($tags->find("#tags")->html());
+
+##Requirements and Limitations
+Stim requires [PHP's DOM](http://php.net/manual/en/book.dom.php) which is automatically enabled for most PHP installations.
+
+###Anonymous Functions
+The Stim methods `insert()` and `each()` require function passing. Ideally [anonymous functions](http://php.net/manual/en/functions.anonymous.php) which require PHP 5.30 or above. 
+However you can use [variable functions](http://www.php.net/manual/en/functions.variable-functions.php) instead.
+
+###XHTML
+Unfortunately PHP's DOM doesn't support XHTML correctly (self closing tags are not closed), however any other version of HTML, including HTML5, is supported.
+
+###CDATA
+PHP's DOM doesn't support CDATA when loading an HTML file, so Stim templates can't include CDATA.
+
+##Bugs and Future Development
+
+- The `cdata()` method uses the [createCDATASection](http://php.net/manual/en/domdocument.createcdatasection.php), which doesn't add CDATA tags (this may be a bug). Currently, these tags are  added manually, and are commented out in script tags to prevent javascript errors.
+- Please send bugs or suggestions to peterjwest3@gmail.com!
