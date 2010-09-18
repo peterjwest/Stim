@@ -7,7 +7,7 @@ Stim is designed to be a usable, powerful template editor. Like most template en
     $page->find("#menu .title")->text("The title of my website!")->source("http://mywebsite.com/");
 	echo $page->html();
 
-If you're a designer/developer this is great because you can work with HTML in the same way for PHP and javascript with the same selectors.
+If you're a designer/developer this is great because you can work with HTML in the same way for PHP and Javascript using the same selectors.
 
 However if you're a developer worried about those *pesky designers* messing around with your classes and ids, you can use Stim's custom selector, `stim:id`, to identify content. This attribute isn't unique or singular so you can use it just like the class attribute:
 
@@ -110,5 +110,5 @@ PHP's DOM doesn't support CDATA when loading an HTML file, so Stim templates can
 
 ##Bugs and Future Development
 
-- The `cdata()` method uses the [createCDATASection()](http://php.net/manual/en/domdocument.createcdatasection.php) method, which doesn't add CDATA tags (this may be a bug). Currently, these tags are  added manually, and are commented out in script tags to prevent javascript errors.
+- The `cdata()` method uses the [createCDATASection()](http://php.net/manual/en/domdocument.createcdatasection.php) method, which doesn't add CDATA tags (this may be a bug). Currently, these tags are  added manually, and are commented out in script tags to prevent Javascript errors.
 - Please send bugs or suggestions to peterjwest3@gmail.com
