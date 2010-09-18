@@ -99,7 +99,7 @@ Sub templates are really simple with Stim, I'm not even going to explain it:
 Stim requires [PHP's DOM](http://php.net/manual/en/book.dom.php) which is automatically enabled for most PHP installations.
 
 ###Anonymous Functions
-The Stim methods `insert()` and `each()` require function passing. Ideally [anonymous functions](http://php.net/manual/en/functions.anonymous.php) which require PHP 5.30 or above. 
+The Stim methods `insert()` and `each()` require function passing. Ideally you should use [anonymous functions](http://php.net/manual/en/functions.anonymous.php) (used in the examples) which require PHP 5.30 or above. 
 However, for older versions of PHP, you can use [variable functions](http://www.php.net/manual/en/functions.variable-functions.php) instead.
 
 ###XHTML
